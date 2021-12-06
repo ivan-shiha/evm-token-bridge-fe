@@ -1,6 +1,6 @@
-import * as React from 'react'
-import * as PropTypes from 'prop-types'
-import styled from 'styled-components'
+import * as PropTypes from "prop-types"
+import * as React from "react"
+import styled from "styled-components"
 
 interface IColumnStyleProps {
   spanHeight: boolean
@@ -15,13 +15,13 @@ interface IColumnProps extends IColumnStyleProps {
 const SColumn = styled.div<IColumnStyleProps>`
   position: relative;
   width: 100%;
-  height: ${({ spanHeight }) => (spanHeight ? '100%' : 'auto')};
+  height: ${({ spanHeight }) => (spanHeight ? "100%" : "auto")};
   max-width: ${({ maxWidth }) => `${maxWidth}px`};
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: ${({ center }) => (center ? 'center' : 'flex-start')};
+  justify-content: ${({ center }) => (center ? "center" : "flex-start")};
 `
 
 const Column = (props: IColumnProps) => {

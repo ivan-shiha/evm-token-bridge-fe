@@ -1,9 +1,10 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { createGlobalStyle } from "styled-components";
-
 import App from "./App";
+import { Web3Provider } from "./components/Web3Context";
 import { globalStyle } from "./styles";
+
 const GlobalStyle = createGlobalStyle`
   ${globalStyle}
 `;
@@ -24,7 +25,9 @@ declare global {
 ReactDOM.render(
   <>
     <GlobalStyle />
-    <App />
+    <Web3Provider>
+      <App />
+    </Web3Provider>
   </>,
   document.getElementById("root")
 );
