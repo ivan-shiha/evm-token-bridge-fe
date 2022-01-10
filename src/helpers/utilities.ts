@@ -1,9 +1,10 @@
+import { BigNumber, utils } from "ethers";
+import Noty from "noty";
+import "../../node_modules/noty/lib/noty.css";
+import "../../node_modules/noty/lib/themes/mint.css";
 import supportedChains from "./chains";
-import Noty from 'noty';
-import '../../node_modules/noty/lib/noty.css';  
-import '../../node_modules/noty/lib/themes/mint.css';  
 
-const NOTIFICATION_TIMEOUT = 3500;
+const NOTIFICATION_TIMEOUT = 5000;
 
 export function capitalize(string: string): string {
   return string
@@ -133,11 +134,47 @@ export function getChainData(chainId: number): any {
   return chainData;
 }
 
-export function showNotification(text:string) {
-    new Noty({ 
-      text,
-      timeout: NOTIFICATION_TIMEOUT,
-      type: 'success'
-      
+export function showNotification(text: string) {
+  new Noty({
+    text,
+    timeout: NOTIFICATION_TIMEOUT,
+    type: "success"
+
   }).show();
+}
+
+export function convertToNumber(amount: BigNumber, decimals: number): string {
+  return utils.formatUnits(amount, decimals);
+}
+
+export function convertToBigNumber(amount: string, decimals: number): BigNumber {
+  return utils.parseUnits(amount, decimals);
+}
+
+export function generateRandomNumber(min: number, max: number): number {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+export function generateNonce(): BigNumber {
+  return BigNumber.from(utils.randomBytes(32));
+}
+
+export function prepareMessage(tokenAddress: string,
+  amount: BigNumber,
+  nonce: BigNumber,
+  chainId: BigNumber): Uint8Array {
+  const data = utils.solidityPack([
+    "address",
+    "uint256",
+    "uint256",
+    "uint256"
+  ], [
+    tokenAddress,
+    amount,
+    nonce,
+    chainId
+  ]);
+  return utils.arrayify(utils.keccak256(data));
 }

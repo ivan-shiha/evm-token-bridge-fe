@@ -1,6 +1,6 @@
-import * as React from 'react'
-import * as blockies from 'blockies-ts'
-import styled from 'styled-components'
+import * as blockies from "blockies-ts"
+import * as React from "react"
+import styled from "styled-components"
 
 interface IBlockieStyleProps {
   size?: number
@@ -24,7 +24,7 @@ const SBlockieWrapper = styled.div<IBlockieStyleProps>`
 `
 
 const Blockie = (props: IBlockieProps) => {
-  const seed = props.address.toLowerCase() || ''
+  const seed = props.address.toLowerCase() || ""
   const imgUrl = blockies
     .create({
       seed
@@ -38,7 +38,7 @@ const Blockie = (props: IBlockieProps) => {
 }
 
 Blockie.defaultProps = {
-  address: '0x0000000000000000000000000000000000000000',
+  address: "0x0000000000000000000000000000000000000000",
   size: 30
 }
 

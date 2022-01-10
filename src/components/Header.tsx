@@ -1,9 +1,9 @@
-import * as React from 'react'
-import styled from 'styled-components'
-import * as PropTypes from 'prop-types'
-import Blockie from './Blockie'
-import { ellipseAddress, getChainData } from '../helpers/utilities';
-import { transitions } from '../styles'
+import * as PropTypes from "prop-types"
+import * as React from "react"
+import { ellipseAddress, getChainData } from "src/helpers/utilities";
+import { transitions } from "src/styles"
+import styled from "styled-components"
+import Blockie from "./Blockie"
 
 const SHeader = styled.div`
   margin-top: -1px;
@@ -48,7 +48,7 @@ interface IHeaderStyle {
 const SAddress = styled.p<IHeaderStyle>`
   transition: ${transitions.base};
   font-weight: bold;
-  margin: ${({ connected }) => (connected ? '-2px auto 0.7em' : '0')};
+  margin: ${({ connected }) => (connected ? "-2px auto 0.7em" : "0")};
 `
 
 const SDisconnect = styled.div<IHeaderStyle>`
@@ -62,8 +62,8 @@ const SDisconnect = styled.div<IHeaderStyle>`
   cursor: pointer;
 
   opacity: ${({ connected }) => (connected ? 1 : 0)};
-  visibility: ${({ connected }) => (connected ? 'visible' : 'hidden')};
-  pointer-events: ${({ connected }) => (connected ? 'auto' : 'none')};
+  visibility: ${({ connected }) => (connected ? "visible" : "hidden")};
+  pointer-events: ${({ connected }) => (connected ? "auto" : "none")};
 
   &:hover {
     transform: translateY(-1px);
@@ -88,13 +88,13 @@ const Header = (props: IHeaderProps) => {
           <p>{`Connected to`}</p>
           <p>{chainData.name}</p>
         </SActiveChain>
-      ) : 'Not Connected'}
+      ) : "Not Connected"}
       {address && (
         <SActiveAccount>
           <SBlockie address={address} />
           <SAddress connected={connected}>{ellipseAddress(address)}</SAddress>
           <SDisconnect connected={connected} onClick={killSession}>
-            {'Disconnect'}
+            {"Disconnect"}
           </SDisconnect>
         </SActiveAccount>
       )}
